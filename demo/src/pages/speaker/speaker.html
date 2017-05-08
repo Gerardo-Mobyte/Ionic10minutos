@@ -1,0 +1,35 @@
+<!--
+  Generated template for the Speaker page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Ponente</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card *ngIf="speaker">
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="{{speaker.avatar}}" alt="{{speaker.name}}">
+      </ion-avatar>
+      <h2>{{speaker.name}}</h2>
+      <p *ngIf="speaker.twitterAccount">@{{speaker.twitterAccount}}</p>
+    </ion-item>
+
+    <ion-card-content>
+      {{speaker.description}}
+    </ion-card-content>
+
+    <ion-list>
+      <ion-list-header color="light">Ponencias</ion-list-header>
+      <button ion-item (click)="viewTalk(talk)" *ngFor="let talk of talks" >{{talk.contents.title}}</button>      
+    </ion-list>
+  </ion-card>
+</ion-content>

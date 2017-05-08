@@ -1,0 +1,9 @@
+page-agenda {
+    .break {
+        background: lighten(map-get($colors, 'light'), 2);
+    }
+
+    .speaker {
+        display: block;
+    }
+}

@@ -1,0 +1,59 @@
+<!--
+  Generated template for the Agenda page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar color="primary">
+		<ion-title>Agenda</ion-title>
+	</ion-navbar>
+	<ion-toolbar no-border-top color="primary">
+		<ion-segment [(ngModel)]="currentDay" *ngIf="days" color="dark">
+			<ion-segment-button value="0">
+				{{days[0].name}}
+			</ion-segment-button>
+			<ion-segment-button value="1">
+         {{days[1].name}}
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="days">
+	
+		<div [ngSwitch]="currentDay">
+			<ion-list *ngSwitchCase="0">
+				<ion-item-group *ngFor="let track of days[0].tracks">
+					<ion-item-divider color="light">{{track.name}}</ion-item-divider>
+					<ion-item (click)="viewTalk(talk)" *ngFor="let talk of track.slots" [class.break]="talk.contents && talk.contents.type == 'BREAK'" >
+            <p>{{talk.start}} - {{talk.end}}</p>
+            <h2 *ngIf="talk.contents && talk.contents.title">{{talk.contents && talk.contents.title}}</h2>
+            <h2 *ngIf="!talk.contents || !talk.contents.title">Por determinar</h2>
+            <p *ngIf="talk.contents && talk.contents.authors && talk.contents.authors.length > 0">
+              <span class="speaker" *ngFor="let author of talk.contents.authors">{{author.name}}</span>
+            </p>
+            <ion-badge item-right>{{talk.contents && talk.contents.tags && talk.contents.tags.Language[0]}}</ion-badge>
+          </ion-item>
+				</ion-item-group>
+			</ion-list>
+
+			<ion-list *ngSwitchCase="1">
+        <ion-item-group *ngFor="let track of days[1].tracks">
+          <ion-item-divider color="light">{{track.name}}</ion-item-divider>
+          <ion-item (click)="viewTalk(talk)" *ngFor="let talk of track.slots" [class.break]="talk.contents && talk.contents.type == 'BREAK'">
+            <p>{{talk.start}} - {{talk.end}}</p>
+            <h2 *ngIf="talk.contents && talk.contents.title">{{talk.contents.title}}</h2>
+            <h2 *ngIf="!talk.contents || !talk.contents.title">Por determinar</h2>
+            <p *ngIf="talk.contents && talk.contents.authors && talk.contents.authors.length > 0">
+              <span class="speaker" *ngFor="let author of talk.contents.authors">{{author.name}}</span>
+            </p>
+            <ion-badge item-right>{{talk.contents && talk.contents.tags && talk.contents.tags.Language[0]}}</ion-badge>
+          </ion-item>
+        </ion-item-group>
+			</ion-list>
+		</div>
+
+</ion-content>

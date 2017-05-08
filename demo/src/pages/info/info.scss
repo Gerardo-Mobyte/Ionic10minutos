@@ -1,0 +1,10 @@
+page-info {
+    ion-card-header {
+        background: map-get($colors , 'light' );
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        border-bottom: 2px solid map-get($colors, 'primary');
+    }
+}
